@@ -58,6 +58,9 @@ def formfield(field, form_class=None, **kwargs):
                          'error_messages', 'show_hidden_initial'):
                 del kwargs[k]
 
+    if field.verbose_name is not None:
+        defaults['label'] = field.verbose_name
+
     defaults.update(kwargs)
 
     if form_class is not None:
