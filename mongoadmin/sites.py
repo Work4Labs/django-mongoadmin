@@ -53,6 +53,8 @@ class MongoAdminSite(AdminSite):
         for model in model_or_iterable:
             if isinstance(model, TopLevelDocumentMetaclass):
                 init_document_options(model)
+                # FIXME: Fix for Django 1.7+, probably not the right way to do this
+                model._deferred = False
             
             if hasattr(model._meta, 'abstract') and model._meta.abstract:
                 raise ImproperlyConfigured('The model %s is abstract, so it '
