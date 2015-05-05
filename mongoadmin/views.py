@@ -48,8 +48,8 @@ class DocumentChangeList(ChangeList):
             return qs.distinct()
         else:
             return qs
-            
-            
+
+
     def get_ordering(self, request, queryset):
         """
         Returns the list of ordering fields for the change list.
@@ -78,7 +78,8 @@ class DocumentChangeList(ChangeList):
                     continue # Invalid ordering specified, skip it.
 
         # Add the given query's ordering fields, if any.
-        ordering.extend(queryset._ordering)
+        if queryset._ordering:
+            ordering.extend(queryset._ordering)
 
         # Ensure that the primary key is systematically present in the list of
         # ordering fields so we can guarantee a deterministic order across all
@@ -90,7 +91,7 @@ class DocumentChangeList(ChangeList):
             ordering.append('-pk')
 
         return ordering
-        
+
     def get_results(self, request):
         paginator = self.model_admin.get_paginator(request, self.queryset, self.list_per_page)
         # Get the number of objects, with admin filters applied.
