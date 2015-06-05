@@ -6,7 +6,7 @@ __Note:__ The master branch requires Django 1.6. For older Django versions you c
 
 ## Requirements
 
- * Django >= 1.6
+ * Django >= 1.6 < 1.7
  * [mongoengine](http://mongoengine.org/) >= 0.6
  * [django-mongodbforms](https://github.com/jschrewe/django-mongodbforms)
 
