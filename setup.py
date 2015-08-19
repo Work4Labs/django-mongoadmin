@@ -6,7 +6,7 @@ from subprocess import call
 def convert_readme():
     try:
         call(["pandoc", "-f", "markdown_github", "-t",  "rst", "-o",  "README.txt", "readme.md"])
-    except OSError:
+    except Exception:
         pass
     return open('README.txt').read()
 
@@ -17,9 +17,9 @@ setup(name='mongoadmin',
     author_email='jan@schafproductions.com',
     url='http://www.schafproductions.com/projects/mongo-admin/',
     packages=[
-        'mongoadmin', 
-        'mongoadmin.templatetags', 
-        'mongoadmin.contenttypes', 
+        'mongoadmin',
+        'mongoadmin.templatetags',
+        'mongoadmin.contenttypes',
         'mongoadmin.auth',
     ],
     classifiers=[
