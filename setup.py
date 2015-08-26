@@ -7,6 +7,7 @@ def convert_readme():
     try:
         call(["pandoc", "-f", "markdown_github", "-t",  "rst", "-o",  "README.txt", "readme.md"])
     except Exception:
+        # If `pandoc` is not available
         pass
     return open('README.txt').read()
 
