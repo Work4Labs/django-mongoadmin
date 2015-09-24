@@ -1,7 +1,7 @@
 from django.core.exceptions import ImproperlyConfigured
 from django.db import models
 from django.db.models.fields import FieldDoesNotExist
-from django.contrib.admin.util import get_fields_from_path, NotRelationField
+from django.contrib.admin.utils import get_fields_from_path, NotRelationField
 from django.contrib.admin.validation import (check_type, check_isseq, check_isdict,
                                              get_field, BaseValidator)
 
