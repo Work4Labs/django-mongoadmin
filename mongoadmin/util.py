@@ -27,7 +27,11 @@ class RelationWrapper(object):
     """
     def __init__(self, document):
         self.to = init_document_options(document)
-        
+
+    def get_related_field(self):
+        return self.to
+
+
 def is_django_user_model(user):
     """
     Checks if a user model is compatible with Django's
