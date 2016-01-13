@@ -36,5 +36,5 @@ setup(name='mongoadmin',
     long_description=convert_readme(),
     include_package_data=True,
     zip_safe=False,
-    install_requires=['setuptools', 'django>=1.3', 'mongoengine>=0.6', 'mongodbforms',],
+    install_requires=['setuptools', 'django>=1.3', 'mongoengine>=0.6', 'django-mongoengine-forms>=0.4',],
 )
