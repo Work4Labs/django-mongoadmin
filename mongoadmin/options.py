@@ -340,7 +340,7 @@ class DocumentAdmin(MongoFormFieldMixin, ModelAdmin):
         for formset in formsets:
             self.save_formset(request, form, formset, change=change)
 
-    def log_addition(self, request, object):
+    def log_addition(self, request, *args, **kwargs):
         """
         Log that an object has been successfully added.
 
@@ -349,10 +349,9 @@ class DocumentAdmin(MongoFormFieldMixin, ModelAdmin):
         if not is_django_user_model(request.user):
             return
 
-        super(DocumentAdmin, self).log_addition(request=request, object=object)
+        super(DocumentAdmin, self).log_addition(request=request, *args, **kwargs)
 
-
-    def log_change(self, request, object, message):
+    def log_change(self, request, *args, **kwargs):
         """
         Log that an object has been successfully changed.
 
@@ -361,9 +360,9 @@ class DocumentAdmin(MongoFormFieldMixin, ModelAdmin):
         if not is_django_user_model(request.user):
             return
 
-        super(DocumentAdmin, self).log_change(request=request, object=object, message=message)
+        super(DocumentAdmin, self).log_change(request=request, *args, **kwargs)
 
-    def log_deletion(self, request, object, object_repr):
+    def log_deletion(self, request, *args, **kwargs):
         """
         Log that an object has been successfully changed.
 
@@ -372,7 +371,8 @@ class DocumentAdmin(MongoFormFieldMixin, ModelAdmin):
         if not is_django_user_model(request.user):
             return
 
-        super(DocumentAdmin, self).log_deletion(request=request, object=object, object_repr=object_repr)
+        super(DocumentAdmin, self).log_deletion(request=request, *args, **kwargs)
+
 
 class EmbeddedInlineAdmin(MongoFormFieldMixin, InlineModelAdmin):
     parent_field_name = None
