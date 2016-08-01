@@ -349,7 +349,7 @@ class DocumentAdmin(MongoFormFieldMixin, ModelAdmin):
         if not is_django_user_model(request.user):
             return
 
-        super(DocumentAdmin, self).log_addition(request=request, *args, **kwargs)
+        super(DocumentAdmin, self).log_addition(request, *args, **kwargs)
 
     def log_change(self, request, *args, **kwargs):
         """
@@ -360,7 +360,7 @@ class DocumentAdmin(MongoFormFieldMixin, ModelAdmin):
         if not is_django_user_model(request.user):
             return
 
-        super(DocumentAdmin, self).log_change(request=request, *args, **kwargs)
+        super(DocumentAdmin, self).log_change(request, *args, **kwargs)
 
     def log_deletion(self, request, *args, **kwargs):
         """
@@ -371,7 +371,7 @@ class DocumentAdmin(MongoFormFieldMixin, ModelAdmin):
         if not is_django_user_model(request.user):
             return
 
-        super(DocumentAdmin, self).log_deletion(request=request, *args, **kwargs)
+        super(DocumentAdmin, self).log_deletion(request, *args, **kwargs)
 
 
 class EmbeddedInlineAdmin(MongoFormFieldMixin, InlineModelAdmin):
