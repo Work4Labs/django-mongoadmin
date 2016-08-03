@@ -64,6 +64,9 @@ class MongoRelatedFieldWidgetWrapper(RelatedFieldWidgetWrapper):
             (TO_FIELD_VAR, "parent__%s" % self.rel.parent_document.__name__),
             (IS_POPUP_VAR, 1),
         ])
+        # FIXME: don't know why I need to add this
+        if 'id' not in kwargs.get("attrs", {}) and 'id' not in self.widget.attrs:
+            self.widget.attrs["id"] = "id_%s" % name
         context = {
             'widget': self.widget.render(name, value, *args, **kwargs),
             'name': name,
