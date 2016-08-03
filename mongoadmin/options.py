@@ -378,6 +378,14 @@ class DocumentAdmin(MongoFormFieldMixin, ModelAdmin):
 
         super(DocumentAdmin, self).log_deletion(request, *args, **kwargs)
 
+    def to_field_allowed(self, request, to_field):
+        """
+        See MongoRelatedFieldWidgetWrapper.
+        """
+        if to_field and to_field.startswith("parent__"):
+            return True
+        return False
+
 
 class EmbeddedInlineAdmin(MongoFormFieldMixin, InlineModelAdmin):
     parent_field_name = None
