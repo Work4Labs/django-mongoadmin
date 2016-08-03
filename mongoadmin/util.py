@@ -26,7 +26,7 @@ class RelationWrapper(object):
     django's ForeignKeyField.rel 
     """
     def __init__(self, document):
-        self.to = init_document_options(document)
+        self.to = self.model = init_document_options(document)
 
     def get_related_field(self):
         return self.to
