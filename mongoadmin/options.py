@@ -20,7 +20,7 @@ from mongodbforms.documents import documentform_factory, embeddedformset_factory
 from mongodbforms.util import load_field_generator, init_document_options
 
 from mongoadmin.util import RelationWrapper, is_django_user_model
-from mongoadmin.widgets import ReferenceRawIdWidget, MultiReferenceRawIdWidget
+from mongoadmin.widgets import ReferenceRawIdWidget, MultiReferenceRawIdWidget, MongoRelatedFieldWidgetWrapper
 
 # Defaults for formfield_overrides. ModelAdmin subclasses can change this
 # by adding to ModelAdmin.formfield_overrides.
@@ -96,11 +96,16 @@ class MongoFormFieldMixin(object):
             form_field = self._get_formfield(db_field, **kwargs)
             if db_field.name not in self.raw_id_fields:
                 related_modeladmin = self.admin_site._registry.get(db_field.document_type)
-                can_add_related = bool(related_modeladmin and
-                            related_modeladmin.has_add_permission(request))
-                form_field.widget = widgets.RelatedFieldWidgetWrapper(
-                            form_field.widget, RelationWrapper(db_field.document_type), self.admin_site,
-                            can_add_related=can_add_related)
+                can_add_related = bool(
+                    related_modeladmin and
+                    related_modeladmin.has_add_permission(request)
+                )
+                form_field.widget = MongoRelatedFieldWidgetWrapper(
+                    form_field.widget,
+                    RelationWrapper(db_field.document_type, self.parent_document),
+                    self.admin_site,
+                    can_add_related=can_add_related
+                )
                 return form_field
             elif db_field.name in self.raw_id_fields:
                 kwargs['widget'] = ReferenceRawIdWidget(db_field.rel, self.admin_site)
