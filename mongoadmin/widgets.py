@@ -1,6 +1,8 @@
 from django.contrib.admin.views.main import IS_POPUP_VAR, TO_FIELD_VAR
 from django.contrib.admin.widgets import ForeignKeyRawIdWidget, ManyToManyRawIdWidget, RelatedFieldWidgetWrapper
+from django.template.loader import render_to_string
 from django.utils.html import escape
+from django.utils.safestring import mark_safe
 from django.utils.text import Truncator
 
 from bson.dbref import DBRef
@@ -59,7 +61,7 @@ class MongoRelatedFieldWidgetWrapper(RelatedFieldWidgetWrapper):
         info = (rel_opts.app_label, rel_opts.model_name)
         self.widget.choices = self.choices
         url_params = '&'.join("%s=%s" % param for param in [
-            (TO_FIELD_VAR, "%s__%s" % (self.rel.parent_document.__name__, self.rel.model.__name__)),
+            (TO_FIELD_VAR, "parent__%s" % self.rel.parent_document.__name__),
             (IS_POPUP_VAR, 1),
         ])
         context = {
