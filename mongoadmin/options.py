@@ -102,7 +102,7 @@ class MongoFormFieldMixin(object):
                 )
                 form_field.widget = MongoRelatedFieldWidgetWrapper(
                     form_field.widget,
-                    RelationWrapper(db_field.document_type, self.parent_model),
+                    RelationWrapper(db_field.document_type, self.model),
                     self.admin_site,
                     can_add_related=can_add_related
                 )
