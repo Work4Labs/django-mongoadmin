@@ -3,6 +3,7 @@ from django.contrib.admin.views.main import ChangeList, ORDER_VAR
 from django.contrib.admin.options import IncorrectLookupParameters
 from django.core.paginator import InvalidPage
 
+
 class DocumentChangeList(ChangeList):
     def get_queryset(self, request):
         # First, we collect all the declared list filters.
@@ -79,7 +80,8 @@ class DocumentChangeList(ChangeList):
 
         # Add the given query's ordering fields, if any.
         if queryset._ordering:
-            ordering.extend(queryset._ordering)
+            queryset_ordering = ["".join([str(part) for part in order]) for order in queryset._ordering]
+            ordering.extend(queryset_ordering)
 
         # Ensure that the primary key is systematically present in the list of
         # ordering fields so we can guarantee a deterministic order across all
