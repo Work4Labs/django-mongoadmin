@@ -12,7 +12,7 @@ def convert_readme():
     return open('README.txt').read()
 
 setup(name='mongoadmin',
-    version='0.2.6',
+    version='0.2.7',
     description="A replacement for django's admin that works with mongodb.",
     author='Jan Schrewe',
     author_email='jan@schafproductions.com',
