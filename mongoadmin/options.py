@@ -1,5 +1,5 @@
 import collections
-from functools import partial
+from functools import partial, reduce
 import operator
 
 from django import forms
