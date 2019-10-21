@@ -68,7 +68,7 @@ class MongoRelatedFieldWidgetWrapper(RelatedFieldWidgetWrapper):
         if 'id' not in kwargs.get("attrs", {}) and 'id' not in self.widget.attrs:
             self.widget.attrs["id"] = "id_%s" % name
         context = {
-            'widget': self.widget.render(name, value, *args, **kwargs),
+            'rendered_widget': self.widget.render(name, value, *args, **kwargs),
             'name': name,
             'url_params': url_params,
             'model': rel_opts.verbose_name,
