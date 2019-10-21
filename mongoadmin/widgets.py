@@ -91,4 +91,4 @@ class MongoRelatedFieldWidgetWrapper(RelatedFieldWidgetWrapper):
                 can_delete_related=True,
                 delete_related_template_url=delete_related_template_url,
             )
-        return mark_safe(render_to_string(self.template, context))
+        return mark_safe(render_to_string(self.template_name, context))
